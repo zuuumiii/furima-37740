@@ -4,13 +4,13 @@
 
 | Colummn            | Type    | Option                   |
 |--------------------|---------|--------------------------|
-| email              | stirng  | null:false, unique:true  |
+| email              | string  | null:false, unique:true  |
 | encrypted_password | string  | null:false               |
-| nickname           | stirng  | null:false               |
-| first_name         | stirng  | null:false               |
-| last_name          | stirng  | null:false               |
-| first_name_kana    | stirng  | null:false               |
-| last_name_kana     | stirng  | null:false               |
+| nickname           | string  | null:false               |
+| first_name         | string  | null:false               |
+| last_name          | string  | null:false               |
+| first_name_kana    | string  | null:false               |
+| last_name_kana     | string  | null:false               |
 | birth_date         | date    | null:false               |
 
 ## Association
@@ -21,7 +21,7 @@ has_many :orders
 
 | Colummn       | Type       | Option                        |
 |---------------|------------|-------------------------------|
-| name          | stirng     | null:false                    |
+| name          | string     | null:false                    |
 | info          | text       | null:false                    |
 | category_id   | integer    | null:false                    |
 | status_id     | integer    | null:false                    |
@@ -29,7 +29,6 @@ has_many :orders
 | prefecture_id | integer    | null:false                    |
 | schedule_id   | integer    | null:false                    |
 | price         | integer    | null:false                    |
-| sold          | boolean    | null:false, default: false    |
 | user          | references | null:false, foregin_key: true |
 
 ## Association
@@ -45,6 +44,7 @@ has_one :order
 | user          | references | null:false, foregin_key: true |
 
 ## Association
+belongs_to :item
 belongs_to :user
 has_one :address
 
@@ -52,12 +52,12 @@ has_one :address
 
 | Colummn       | Type       | Option                        |
 |---------------|------------|-------------------------------|
-| postal_cod    | stirng     | null:false                    |
+| postal_code   | string     | null:false                    |
 | prefecture_id | integer    | null:false                    |
-| city          | integer    | null:false                    |
-| address       | integer    | null:false                    |
-| building      | integer    |                               |
-| phone         | integer    | null:false                    |
+| city          | string     | null:false                    |
+| address       | string     | null:false                    |
+| building      | string     |                               |
+| phone         | string     | null:false                    |
 | order         | references | null:false, foregin_key: true |
 
 ## Association
