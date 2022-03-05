@@ -55,13 +55,18 @@ RSpec.describe User, type: :model do
       end
       #ここまで空テスト
       #ここから文字種類、文字数テスト
-      it "passwordが既に使われていると登録できない" do
+      it "emailが既に使われていると登録できない" do
         @user.save
         @user2 = FactoryBot.build(:user)
         @user2.save
         @user.email = @user2.email
         @user.valid?
         expect(@user.errors.full_messages).to include("Email has already been taken")
+      end
+      it 'passwordとpassword_confirmationが不一致では登録できない' do
+        @user.password_confirmation = "a123c56"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
       it "passwordが数字だけでは登録できない" do
         @user.password = "111111"
