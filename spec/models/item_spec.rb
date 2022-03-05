@@ -28,28 +28,28 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Image can't be blank")
        end
-       it "category_idが空では登録できない" do
-        @item.category_id = ""
+       it "category_idが未選択では登録できない" do
+        @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Category 選択してください")
        end
-       it "status_idが空では登録できない" do
-        @item.status_id = ""
+       it "status_idが未選択では登録できない" do
+        @item.status_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Status 選択してください")
        end
-       it "shipping_fee_idが空では登録できない" do
-        @item.shipping_fee_id = ""
+       it "shipping_fee_idが未選択では登録できない" do
+        @item.shipping_fee_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipping fee 選択してください")
        end
-       it "prefecture_idが空では登録できない" do
-        @item.prefecture_id = ""
+       it "prefecture_idが未選択では登録できない" do
+        @item.prefecture_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefecture 選択してください")
        end
-       it "schedule_idが空では登録できない" do
-        @item.schedule_id = ""
+       it "schedule_idが未選択では登録できない" do
+        @item.schedule_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Schedule 選択してください")
        end
@@ -85,6 +85,12 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
        end
+       it "ユーザーが紐づいていないと登録できない" do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("User must exist")
+       end
+
     end
   end
 end
