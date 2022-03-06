@@ -7,6 +7,7 @@ class OrderAddress
     validates :city
     validates :address
     validates :phone, format: {with: /\A\d{10}$|^\d{11}\z/, message: "- 無しで数字のみ入力してください。"}
+    validates :token
   end
   validates :prefecture_id, numericality: { other_than: 1, message: '選択してください' }
 
