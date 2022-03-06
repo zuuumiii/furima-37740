@@ -129,7 +129,7 @@
     <ul class='item-lists'>
 
       <%# 商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
-      <% if @items != nil %>
+      <% if @items.present? %>
       <% @items.each do |item| %>
       <li class='list'>
         <%= link_to "#" do %>
