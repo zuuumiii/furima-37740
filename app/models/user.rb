@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   has_many :items
 
-  VALID_PASSWORDL_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i
+  VALID_PASSWORDL_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i
   VALID_JAPANESE_REGEX = /\A[ぁ-んァ-ヶ一-龥々ー]+\z/
   VALID_KANA_REGEX = /\A[ァ-ヶー]+\z/
   with_options presence: true do
@@ -19,5 +19,4 @@ class User < ApplicationRecord
     validates :last_name_kana, format: { with: VALID_KANA_REGEX, message: '全角カタカナを使用してください' }
     validates :birth_date
   end
-
 end
