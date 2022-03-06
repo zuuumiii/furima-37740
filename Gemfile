@@ -65,3 +65,4 @@ gem "devise"
 gem 'mini_magick'
 gem 'image_processing', '~> 1.12'
 gem 'active_hash'
+gem 'pry-rails'
