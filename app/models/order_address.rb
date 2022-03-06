@@ -1,6 +1,6 @@
 calss OrderAddress
  include ActiveModel::Model
-  attr_accessor :psotal_code, :prefecture_id, :city, :address, :building, :phone
+  attr_accessor :psotal_code, :prefecture_id, :city, :address, :building, :phone, :user_id, :item_id
 
   with_ooptions presence: true do
     validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "- を含み正しく入力してください。"}
