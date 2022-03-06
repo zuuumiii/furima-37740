@@ -9,4 +9,9 @@ calss OrderAddress
     validates :phone
   end
   validates :prefecture_id, numericality: { other_than: 1, message: '選択してください' }
+
+  def save
+    order = Order.create(usre_id: user_id, item_id: item_id)
+    Address.create(postal_code: postal_code, prefecture_id: prefecture_id, city: city, address: address, building: building, phone: phone, order_id: order.id)
+  end
 end
