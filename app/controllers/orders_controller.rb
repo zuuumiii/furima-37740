@@ -2,8 +2,8 @@ class OrdersController < ApplicationController
 
   def index
     @order_address = OrderAddress.new
+    @item = Item.find(params[:item_id])
   end
-
   def create
     @order_address = OrderAddress.new(order_params)
     if @order_address.valid?
