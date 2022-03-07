@@ -7,6 +7,7 @@ class Item < ApplicationRecord
   belongs_to :shipping_fee
   belongs_to :prefecture
   belongs_to :schedule
+  has_one :order
 
   validates :name, presence: true, length: { maximum: 40 }
   validates :info, presence: true, length: { maximum: 1000 }
