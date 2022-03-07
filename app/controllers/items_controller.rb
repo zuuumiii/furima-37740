@@ -1,11 +1,9 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit]
-  before_action :set_item, only: [:show, :edit, :update] 
-  before_action :find_sold_item, only: [:show, :edit] 
+  before_action :set_item, only: [:show, :edit, :update]
 
   def index
     @items = Item.all.order(created_at: 'DESC')
-    @sold_items = Order.all
   end
 
   def new
@@ -25,7 +23,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-      if current_user.id != @item.user_id || @sold_item.present? 
+      if current_user.id != @item.user_id || @item.order.present? 
       redirect_to action: :index
       end
   end
@@ -54,9 +52,5 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
-  end
-
-  def find_sold_item
-    @sold_item = Order.find_by(item_id: (params[:id]))
   end
 end
