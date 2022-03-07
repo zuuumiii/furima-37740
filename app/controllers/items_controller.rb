@@ -1,10 +1,11 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: :new
+  before_action :authenticate_user!, only: [:new, :edit]
   before_action :set_item, only: [:show, :edit, :update] 
   before_action :find_sold_item, only: [:show, :edit] 
 
   def index
     @items = Item.all.order(created_at: 'DESC')
+    @sold_items = Order.all
   end
 
   def new
@@ -24,13 +25,9 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if user_signed_in?
-      if current_user.id != @item.user_id
+      if current_user.id != @item.user_id || @sold_item.present? 
       redirect_to action: :index
       end
-    else
-      redirect_to new_user_session_path
-    end
   end
 
   def update
