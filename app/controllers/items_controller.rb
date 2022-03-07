@@ -13,8 +13,10 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
+      flash[:notice] = "商品を登録しました"
       redirect_to root_path
     else
+      flash.now[:alert] = "登録に失敗しました"
       render :new
     end
   end
@@ -23,13 +25,18 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    redirect_to action: :index if current_user.id != @item.user_id || @item.order.present?
+    if current_user.id != @item.user_id || @item.order.present?
+      flash[:alert] = "不正な操作です"
+      redirect_to action: :index 
+    end
   end
 
   def update
     if @item.update(item_params)
+      flash[:notice] = "商品を編集しました"
       redirect_to item_path(@item)
     else
+      flash.now[:alert] = "登録に失敗しました"
       render :edit
     end
   end
@@ -38,6 +45,7 @@ class ItemsController < ApplicationController
     item = Item.find(params[:id])
     if user_signed_in? && current_user.id == item.user_id
       item.destroy
+      flash[:notice] = "削除しました"
       redirect_to action: :index
     end
   end
