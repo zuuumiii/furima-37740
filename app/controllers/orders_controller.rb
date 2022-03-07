@@ -12,8 +12,10 @@ class OrdersController < ApplicationController
     if @order_address.valid?
       pay_item
       @order_address.save
+      flash[:notice] = "商品を購入しました"
       redirect_to root_path
     else
+      flash.now[:notice] = "購入に失敗しました"
       render :index
     end
   end
