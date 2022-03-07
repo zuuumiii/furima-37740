@@ -5,7 +5,6 @@ RSpec.describe OrderAddress, type: :model do
     before do
       item = FactoryBot.create(:item)
       @order_address = FactoryBot.build(:order_address, user_id: item.user_id, item_id: item.id)
-      sleep 0.1
     end
 
     context "購入ができる場合" do
@@ -58,7 +57,7 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Postal code - を含み正しく入力してください。")
       end
-      it "psotal_codeが3桁-4桁でないとだと登録できない" do
+      it "psotal_codeが3桁-4桁でないと登録できない" do
         @order_address.postal_code = "1234-567"
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Postal code - を含み正しく入力してください。")
