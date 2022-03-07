@@ -15,7 +15,7 @@ class OrdersController < ApplicationController
       flash[:notice] = "商品を購入しました"
       redirect_to root_path
     else
-      flash.now[:notice] = "購入に失敗しました"
+      flash.now[:alert] = "購入に失敗しました"
       render :index
     end
   end

@@ -13,3 +13,19 @@
  *= require_tree .
  *= require_self
  */
+.notifications {
+  color: white;
+  text-align: center;
+}
+
+.notice {
+  background-color: rgb(55, 158, 193);
+  height: 30px;
+  font-size: 18px;
+}
+
+.alert {
+  background-color: rgb(226, 123, 68);
+  height: 30px;
+  font-size: 18px;
+}
